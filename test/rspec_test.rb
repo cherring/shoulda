@@ -64,7 +64,8 @@ else
     end
 
     def vendor_gems(env)
-      project_command "rake gems:unpack RAILS_ENV=#{env}"
+      rails_env = env = (defined? Rails.env && Rails.env) ? Rails.env : RAILS_ENV
+      project_command "rake gems:unpack #{rails_env}=#{env}"
     end
 
     def unpack_gems
